@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const users = require("../data/comments");
+const comments = require("../data/comments");
 
 router
 .route('/')

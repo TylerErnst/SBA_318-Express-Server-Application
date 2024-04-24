@@ -6,12 +6,18 @@ const users = require("./routes/users");
 const posts = require("./routes/posts");
 const comments = require("./routes/comments");
 const error = require("./utilities/error");
+// require the filesystem module
+const fs = require("fs");
 
 app.use("/users", users);
 app.use("/posts", posts);
 app.use("/comments", comments);
 
 app.set("view engine", "ejs");
+
+// serve static files from the styles directory
+app.use(express.static("./styles"));
+
 
 // Parsing Middleware
 app.use(express.json());
@@ -38,12 +44,14 @@ app.get("/about", (req, res) => {
   res.render("pages/about", { user: user });
   console.log(user);
 });
-// //about.ejs template
+//about.ejs template
 app.get("/", (req, res) => {
   const menu = [
     { title: "Home", href: "http://localhost:3000/" },
-    { title: "Login", href: "http://localhost:3000/login" },
+    { title: "Posts", href: "http://localhost:3000/posts" },
+    { title: "Comments", href: "http://localhost:3000/comments" },
     { title: "About", href: "http://localhost:3000/about" },
+    { title: "Login", href: "http://localhost:3000/login" },
   ];
   res.render("pages/index", { links: menu });
 });
@@ -76,6 +84,7 @@ app.use((req, res) => {
   res.json({ error: "Resource Not Found" });
 });
 
+// Start Server
 app.listen(port, () => {
   console.log(`Server listening on port: ${port}.`);
 });
