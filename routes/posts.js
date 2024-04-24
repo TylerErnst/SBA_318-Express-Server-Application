@@ -66,7 +66,7 @@ router
   })
 
   // GET /api/posts?userId=<VALUE>
-router.get('/api/posts', (req, res) => {
+router.get('/posts', (req, res) => {
   const userId = req.query.userId;
   const userPosts = posts.filter(post => post.userId === userId);
   res.json(userPosts);

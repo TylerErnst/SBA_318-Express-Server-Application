@@ -105,3 +105,10 @@ app.use((err, req, res, next) => {
 app.listen(port, () => {
   console.log(`Server listening on port: ${port}.`);
 });
+
+
+
+// Have posts show list of posts (topics)
+// Each one should be clickable
+  // should show all comments for that post
+  // should have an add comment button/form

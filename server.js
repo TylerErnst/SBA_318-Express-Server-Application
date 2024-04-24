@@ -4,13 +4,12 @@ const port = 3000;
 
 const users = require("./routes/users");
 const posts = require("./routes/posts");
+const postss = require("./data/posts");
 const comments = require("./routes/comments");
 const error = require("./utilities/error");
-// require the filesystem module
-const fs = require("fs");
 
-app.use("/users", users);
-app.use("/posts", posts);
+app.use("/api/users", users);
+app.use("/api/posts", posts);
 app.use("/comments", comments);
 
 app.set("view engine", "ejs");
@@ -37,14 +36,7 @@ ${time.toLocaleTimeString()}: Received a ${req.method} request to ${req.url}.`
   next();
 });
 
-
 //index.ejs template
-app.get("/about", (req, res) => {
-  const user = { firstName: "Tyler", age: 29 };
-  res.render("pages/about", { user: user });
-  console.log(user);
-});
-//about.ejs template
 app.get("/", (req, res) => {
   const menu = [
     { title: "Home", href: "http://localhost:3000/" },
@@ -55,7 +47,24 @@ app.get("/", (req, res) => {
   ];
   res.render("pages/index", { links: menu });
 });
-
+//about.ejs template
+app.get("/about", (req, res) => {
+  const user = { firstName: "Tyler", age: 29 };
+  res.render("pages/about", { user: user });
+  console.log(user);
+});
+//posts.ejs template
+app.get("/posts", (req, res) => {
+  // const menu = [
+  //   { title: "Home", href: "http://localhost:3000/" },
+  //   { title: "Posts", href: "http://localhost:3000/posts" },
+  //   { title: "Comments", href: "http://localhost:3000/comments" },
+  //   { title: "About", href: "http://localhost:3000/about" },
+  //   { title: "Login", href: "http://localhost:3000/login" },
+  // ];
+  console.log("posts", postss)
+  res.render("pages/posts", { posts: postss });
+});
 
 
 
