@@ -3,6 +3,8 @@ const router = express.Router();
 
 const posts = require("../data/posts");
 
+router.use(express.json());
+
 // This is the same code as the previous example!
 // We've simply changed "app" to "router" and
 // included an export at the end of the file.

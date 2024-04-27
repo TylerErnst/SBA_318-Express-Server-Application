@@ -22,69 +22,41 @@
 
     <!-- Submit Button -->
     <!-- <form action="/api/posts" method="post"> -->
-    <form action="/api/posts" method="post">
-    <!-- <form> -->
-      <input type="text" name="userId" placeholder="Enter your ID" id="userId"/>
-      <input type="text" name="title" placeholder="Title" id="title"/>
-      <input type="text" name="content" placeholder="texthere" id="content"/>
-      <input type="submit" name="submit" value="Create" id="post-btn"/>
+      <form id="postForm">
+        <input type="text" name="userId" placeholder="Enter your ID" id="userId"/>
+        <input type="text" name="title" placeholder="Title" id="title"/>
+        <input type="text" name="content" placeholder="Content" id="content"/>
+        <input type="submit" value="Create" id="post-btn"/>
     </form>
 
+    <script>
+      document.getElementById('postForm').addEventListener('submit', function(event) {
+          event.preventDefault(); // Prevent default form submission
+
+          // Get form data
+          const formData = {
+              userId: document.getElementById('userId').value,
+              title: document.getElementById('title').value,
+              content: document.getElementById('content').value
+          };
+
+          // Send POST request using fetch
+          fetch('/api/posts', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(formData)
+          })
+          .then(response => response.json())
+          .then(data => {
+              console.log('Response:', data);
+          })
+          .catch(error => {
+              console.error('Error:', error);
+              // Handle errors here
+          });
+      });
+  </script>
   </body>
-  <!-- <script>
-    const user = document.getElementById('userId');
-    const title = document.getElementById('title');
-    const content = document.getElementById('content');
-    const button = document.getElementById('post-btn');
-
-    // button.addEventListener('click', async _ => {
-    //   try {     
-    //     const response = await fetch('/api/posts', {
-    //       method: "POST",
-    //       body: {
-    //         // Your body
-    //         userId: user.value,
-    //         title: title.value,
-    //         content: content.value
-    //       }
-
-    //       // .post((req, res) => {
-    //       //   if (req.body.userId && req.body.title && req.body.content) {
-    //       //     const post = {
-    //       //       id: posts[posts.length - 1].id + 1,
-    //       //       userId: req.body.userId,
-    //       //       title: req.body.title,
-    //       //       content: req.body.content,
-    //       //     };
-
-    //       //     posts.push(post);
-    //       //     res.json(posts[posts.length - 1]);
-    //       //   } else res.json({ error: "Insufficient Data" });
-
-
-    //     });
-    //     console.log('Completed!', response);
-    //     return response.json();
-    //   } catch(err) {
-    //     console.error(`Error: ${err}`);
-    //   }
-    // });
-
-    function onclick(){
-      // instance.post("/api/posts").then( response => {
-      //     //response.data will have received data
-      //     let body = {
-      //         userId: user.value,
-      //         title: title.value,
-      //         content: content.value
-      //       }
-      //       return body;
-      // });
-      console.log('clicky')
-    }
-
-  </script> -->
-  <%function onclick(){
-    console.log('clicky')
-  }%>
 </html>
