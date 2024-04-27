@@ -55,7 +55,7 @@ app.get("/about", (req, res) => {
 });
 //posts.ejs template
 app.get("/posts", (req, res) => {
-  console.log("posts", postData)
+  // console.log("posts", postData)
   res.render("pages/posts", { posts: postData });
 });
 

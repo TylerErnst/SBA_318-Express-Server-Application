@@ -15,6 +15,7 @@ router
     res.json(posts);
   })
   .post((req, res) => {
+    console.log(req.body)
     if (req.body.userId && req.body.title && req.body.content) {
       const post = {
         id: posts[posts.length - 1].id + 1,
