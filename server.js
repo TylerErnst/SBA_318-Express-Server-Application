@@ -41,9 +41,9 @@ app.get("/", (req, res) => {
   const menu = [
     { title: "Home", href: "http://localhost:3000/" },
     { title: "Posts", href: "http://localhost:3000/posts" },
-    { title: "Comments", href: "http://localhost:3000/comments" },
-    { title: "About", href: "http://localhost:3000/about" },
-    { title: "Login", href: "http://localhost:3000/login" },
+    //{ title: "Comments", href: "http://localhost:3000/comments" },
+    //{ title: "About", href: "http://localhost:3000/about" },
+    //{ title: "Login", href: "http://localhost:3000/login" },
   ];
   res.render("pages/index", { links: menu });
 });
