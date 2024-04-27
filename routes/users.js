@@ -66,38 +66,29 @@ router
     else next();
   });
 
-  // GET /api/users/:id/posts
-router.get('/:id/posts', (req, res) => {
-    const userId = req.params.id;
-    const userPosts = posts.filter(post => post.userId === userId);
-    res.json(userPosts);
+// GET /api/users/:id/posts
+router.get("/:id/posts", (req, res) => {
+  const userId = req.params.id;
+  const userPosts = posts.filter((post) => post.userId === userId);
+  res.json(userPosts);
 });
-// // GET /users/:id/comments
-// router.get('/:id/comments', (req, res) => {
-//   const userId = req.params.id;
-//   const userComments = comments.filter(comment => comment.userId === userId);
-//   res.json(userComments);
-// });
-// // GET /users/:id/comments?postId=<VALUE>
-// router.get('/:id/comments', (req, res) => {
-//   const userId = req.params.id;
-//   const postId = req.query.postId;
-//   const userPostComments = comments.filter(comment => comment.userId === userId && comment.postId === postId);
-//   res.json(userPostComments);
-// });
 
-// GET /users/:id/comments
-router.get('/:id/comments', (req, res) => {
+// GET /users/:id/comments   ||   GET /users/:id/comments?postId=<VALUE>
+router.get("/:id/comments", (req, res) => {
   const userId = req.params.id;
   const postId = req.query.postId;
 
   if (postId) {
     // If postId is provided, filter comments by both userId and postId
-    const userPostComments = comments.filter(comment => comment.userId === userId && comment.postId === postId);
+    const userPostComments = comments.filter(
+      (comment) => comment.userId === userId && comment.postId === postId
+    );
     res.json(userPostComments);
   } else {
     // If postId is not provided, filter comments by userId only
-    const userComments = comments.filter(comment => comment.userId === userId);
+    const userComments = comments.filter(
+      (comment) => comment.userId === userId
+    );
     res.json(userComments);
   }
 });
